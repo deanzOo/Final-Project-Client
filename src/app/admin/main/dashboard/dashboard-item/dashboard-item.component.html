@@ -1,0 +1,13 @@
+<div fxFlex="1 1 auto" fxLayout="column" class="dashboard-card">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="dashboard-card-icon">
+      <mat-icon [ngStyle]="{'color': color}">{{icon}}</mat-icon>
+    </div>
+    <div class="dashboard-card-title" fxFlex="1 1 auto" fxLayout="column">
+      <span [ngStyle]="{'color': color}">{{title}}</span>
+      <span class="dashboard-card-title-amount" [ngStyle]="{'color': color}">{{amount}}</span>
+    </div>
+  </div>
+</div>
+<!--fxFlex="1 1 auto" fxLayout="column"-->
+<!--fxLayoutAlign="center center"-->

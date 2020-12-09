@@ -1,0 +1,10 @@
+<div fxLayout="row-reverse wrap" fxLayoutAlign="start center">
+  <app-dashboard-item fxFlex="25%"
+                      *ngFor="let stat of dashboardStat"
+                      [icon]="stat.icon"
+                      [title]="stat.title"
+                      [color]="stat.color ? stat.color : 'black'"
+                      [amount]="stat.amount"
+  ></app-dashboard-item>
+</div>
+
