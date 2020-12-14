@@ -1,4 +1,4 @@
-<div fxLayout="row-reverse wrap" fxLayoutAlign="start center">
+<div fxLayout="row wrap" fxLayoutAlign="start center">
   <app-dashboard-item fxFlex="25%"
                       *ngFor="let stat of dashboardStat"
                       [icon]="stat.icon"
@@ -6,5 +6,11 @@
                       [color]="stat.color ? stat.color : 'black'"
                       [amount]="stat.amount"
   ></app-dashboard-item>
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="start center">
+  <app-dashboard-chart [fxFlex]="(chart.size * 25) + '%'"
+    [data]="chart"
+     *ngFor="let chart of dashboardCharts"
+  ></app-dashboard-chart>
 </div>
 

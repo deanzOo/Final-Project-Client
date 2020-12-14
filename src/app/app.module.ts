@@ -22,6 +22,12 @@ import { DashboardComponent } from './admin/main/dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthService } from './admin/services/auth.service';
+import { ApiAccessService } from './api-access.service';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardChartComponent } from './admin/main/dashboard/dashboard-chart/dashboard-chart.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     ModelsComponent,
     DashboardComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    DashboardChartComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +56,15 @@ import { MatInputModule } from '@angular/material/input';
     FlexLayoutModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    GoogleChartsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    ApiAccessService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
