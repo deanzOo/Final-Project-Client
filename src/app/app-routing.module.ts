@@ -6,6 +6,8 @@ import { AdminGuard } from './admin.guard';
 import { LoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/main/dashboard/dashboard.component';
 import { AdminLayoutComponent } from './admin/main/admin-layout/admin-layout.component';
+import { UsersComponent } from './admin/main/users/users.component';
+import { ClientComponent } from './client/client.component';
 
 const routes: Routes = [
   {
@@ -32,8 +34,22 @@ const routes: Routes = [
           {
             path: 'models',
             component: ModelsComponent
+          },
+          {
+            path: 'users',
+            component: UsersComponent
           }
         ]
+      }
+    ]
+  },
+  {
+    path: '',
+    component: ClientComponent,
+    children: [
+      {
+        path: '',
+        component: ClientComponent
       }
     ]
   }

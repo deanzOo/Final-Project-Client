@@ -28,6 +28,10 @@ import { ApiAccessService } from './api-access.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardChartComponent } from './admin/main/dashboard/dashboard-chart/dashboard-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { UsersComponent } from './admin/main/users/users.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
     DashboardComponent,
     LoginComponent,
     MainComponent,
-    DashboardChartComponent
+    DashboardChartComponent,
+    UsersComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +63,13 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left'
+    }),
     HttpClientModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     AuthService,

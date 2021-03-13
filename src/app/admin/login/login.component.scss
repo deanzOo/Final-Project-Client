@@ -1,5 +1,6 @@
 .login {
-  background: url("../../../assets/img/login-background.jpg");
+  background: #31302b url("../../../assets/img/login-background.jpg") no-repeat fixed bottom;
+
   mat-card {
     opacity: 0.8;
     mat-icon {

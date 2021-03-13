@@ -10,89 +10,107 @@ export class DashboardComponent implements OnInit {
   cpu = 55;
   dashboardStat: DashboardItem[] = [
     {
-      title: 'Dor',
+      title: 'מודלים במערכת',
       icon: 'leaderboard',
-      amount: 21566,
-      color: 'black'
+      amount: 7,
+      color: 'rgb(63 81 181)'
     },
     {
-      title: 'Ofek',
-      icon: 'person',
-      amount: 67876,
-      color: '#156498'
+      title: 'משתמשים רשומים',
+      icon: 'supervisor_account',
+      amount: 5,
+      color: 'rgb(63 81 181)'
     },
     {
-      title: 'Dean',
-      icon: 'leaderboard',
-      amount: 345345,
-      color: 'red'
+      title: 'לוגואים שנוצרו',
+      icon: 'add_photo_alternate',
+      amount: 25,
+      color: 'rgb(63 81 181)'
     },
     {
-      title: 'models',
-      icon: 'leaderboard',
-      amount: 234234
+      title: 'זמן אימון כולל',
+      icon: 'more_time',
+      amount: 130,
+      color: 'rgb(63 81 181)'
     },
-    {
-      title: 'models',
-      icon: 'leaderboard',
-      amount: 345345
-    },
-    {
-      title: 'models',
-      icon: 'leaderboard',
-      amount: 234234
-    },
-    {
-      title: 'models',
-      icon: 'leaderboard',
-      amount: 345345
-    },
-    {
-      title: 'models',
-      icon: 'leaderboard',
-      amount: 234234
-    }
   ];
   dashboardCharts: DashboardChart[] = [
-    // {
-    //   title: 'Browser market shares at a specific website, 2014',
-    //   type: chartTitles.AREA_CHARTS,
-    //   data: [
-    //     ['2013',  1000,      400],
-    //     ['2014',  1170,      460],
-    //     ['2015',  660,       1120],
-    //     ['2016',  1030,      540]
-    //   ],
-    //   columnNames: ['Year', 'Sales', 'Expenses'],
-    //   options: {
-    //     legend: 'none',
-    //     height: '100%',
-    //     width: '100%',
-    //     backgroundColor: 'transparent'
-    //   },
-    //   size: 1
-    // },
-    // {
-    //   title: 'Browser market shares at a specific website, 2014',
-    //   type: chartTitles.PIE_CHARTS,
-    //   data: [
-    //     ['Firefox', 45.0],
-    //     ['IE', 26.8],
-    //     ['Chrome', 12.8],
-    //     ['Safari', 8.5],
-    //     ['Opera', 6.2],
-    //     ['Others', 0.7]
-    //   ],
-    //   columnNames: ['Browser', 'Percentage'],
-    //   options: {
-    //     legend: 'none',
-    //     height: '100%',
-    //     width: '100%',
-    //     backgroundColor: 'transparent',
-    //     is3D: true
-    //   },
-    //   size: 1
-    // },
+    {
+      title: 'חתך המודל המרכזי מול המודל המשולב',
+      type: chartTitles.AREA_CHARTS,
+      data: [
+        ['אוגוסט',  1000,      400],
+        ['ספטמבר',  1170,      460],
+        ['אוקטובר',  880,       780],
+        ['נובמבר',  650,      540],
+        ['דצמבר',  700,      320],
+      ],
+      columnNames: ['Month', 'Model1', 'Model2'],
+      options: {
+        legend: 'none',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'transparent'
+      },
+      size: 2
+    },
+    {
+      title: 'חתך זמני אימון מודלים',
+      type: chartTitles.PIE_CHARTS,
+      data: [
+        ['מודל ראשוני', 30.6],
+        ['מודל בדיקה', 24.6],
+        ['המודל הצגה', 25.6],
+        ['מודל בדיקה', 16.6],
+        ['מודל בדיקה 2', 40.6]
+      ],
+      columnNames: ['Browser', 'Percentage'],
+      options: {
+        legend: 'none',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'transparent',
+        is3D: true
+      },
+      size: 1
+    },
+    {
+      title: 'נתוני צריכה בשרת',
+      type: chartTitles.GAUGE,
+      data: [
+        ['זיכרון ראשי', 80],
+        ['מעבד', this.cpu],
+        ['תעבורת רשת', 702],
+        ['ליבות GPU', 16],
+      ],
+      columnNames: ['Label', 'Value'],
+      options: {
+        legend: 'none',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'transparent',
+      },
+      size: 1
+    },
+
+    {
+      title: 'תוצאות אימון אחרונות',
+      type: chartTitles.LINE_CHARTS,
+      data: [
+        ['25/12/20',  1000,      980],
+        ['28/12/20',  1170,      1000],
+        ['1/1/20',  900,       1100],
+        ['3/1/20',  1230,      1460]
+      ],
+      columnNames: ['תאריך', 'Generator', 'Discriminator'],
+      options: {
+        legend: 'none',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'transparent'
+      },
+      size: 2
+    },
     // {
     //   title: 'Browser market shares at a specific website, 2014',
     //   type: chartTitles.BAR_CHART,
@@ -197,23 +215,6 @@ export class DashboardComponent implements OnInit {
     //   },
     //   size: 1
     // },
-    {
-      title: 'Browser market shares at a specific website, 2014',
-      type: chartTitles.GAUGE,
-      data: [
-        ['Memory', 80],
-        ['CPU', this.cpu],
-        ['Network', 68]
-      ],
-      columnNames: ['Label', 'Value'],
-      options: {
-        legend: 'none',
-        height: '100%',
-        width: '100%',
-        backgroundColor: 'transparent',
-      },
-      size: 1
-    },
     // {
     //   title: 'Browser market shares at a specific website, 2014',
     //   type: chartTitles.GEO_CHART,
@@ -273,24 +274,6 @@ export class DashboardComponent implements OnInit {
     //     height: '100%',
     //     width: '100%',
     //     backgroundColor: 'transparent',
-    //   },
-    //   size: 1
-    // },
-    // {
-    //   title: 'Browser market shares at a specific website, 2014',
-    //   type: chartTitles.LINE_CHARTS,
-    //   data: [
-    //     ['2004',  1000,      400],
-    //     ['2005',  1170,      460],
-    //     ['2006',  660,       1120],
-    //     ['2007',  1030,      540]
-    //   ],
-    //   columnNames: ['Year', 'Sales', 'Expenses'],
-    //   options: {
-    //     legend: 'none',
-    //     height: '100%',
-    //     width: '100%',
-    //     backgroundColor: 'transparent'
     //   },
     //   size: 1
     // },

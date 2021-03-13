@@ -9,6 +9,7 @@ export class DashboardItemComponent implements OnInit {
   @Input() icon: string;
   @Input() title: string;
   @Input() color: string;
+  @Input() fontColor: string;
   @Input() amount: number;
 
   constructor() { }

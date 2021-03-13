@@ -9,12 +9,19 @@ import { DashboardItem, MenuLink } from '../../../models/admin/dashboardItem';
 export class AdminLayoutComponent implements OnInit {
   navBar: MenuLink[] = [
     {
-      title: 'Dashboard',
-      link: 'dashboard'
+      title: 'מסך ראשי',
+      link: 'dashboard',
+      icon: 'dashboard'
     },
     {
-      title: 'Models',
-      link: 'models'
+      title: 'מודלים',
+      link: 'models',
+      icon: 'language'
+    },
+    {
+      title: 'משתמשים',
+      link: 'users',
+      icon: 'supervisor_account'
     }
   ];
 
