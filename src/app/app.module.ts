@@ -24,7 +24,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from './admin/services/auth.service';
-import { ApiAccessService } from './api-access.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardChartComponent } from './admin/main/dashboard/dashboard-chart/dashboard-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -32,6 +31,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { UsersComponent } from './admin/main/users/users.component';
 import { ClientComponent } from './client/client.component';
+import { ClientMainComponent } from './client/client-layout/client-main/client-main.component';
+import { ClientHeaderComponent } from './client/client-layout/client-header/client-header.component';
+import { ClientFooterComponent } from './client/client-layout/client-footer/client-footer.component';
+import { LoginModalComponent } from './client/login-modal/login-modal.component';
+import { RegisterModalComponent } from './client/register-modal/register-modal.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -45,14 +52,16 @@ import { ClientComponent } from './client/client.component';
     MainComponent,
     DashboardChartComponent,
     UsersComponent,
-    ClientComponent
+    ClientComponent,
+    ClientMainComponent,
+    ClientHeaderComponent,
+    ClientFooterComponent,
+    LoginModalComponent,
+    RegisterModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
@@ -69,11 +78,16 @@ import { ClientComponent } from './client/client.component';
     HttpClientModule,
     GoogleChartsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
-    AuthService,
-    ApiAccessService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

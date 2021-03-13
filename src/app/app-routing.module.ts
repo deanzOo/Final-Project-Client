@@ -8,6 +8,7 @@ import { DashboardComponent } from './admin/main/dashboard/dashboard.component';
 import { AdminLayoutComponent } from './admin/main/admin-layout/admin-layout.component';
 import { UsersComponent } from './admin/main/users/users.component';
 import { ClientComponent } from './client/client.component';
+import { ClientMainComponent } from './client/client-layout/client-main/client-main.component';
 
 const routes: Routes = [
   {
@@ -49,7 +50,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ClientComponent
+        component: ClientMainComponent
       }
     ]
   }
