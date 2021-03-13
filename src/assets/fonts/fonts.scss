@@ -1,0 +1,68 @@
+/*-------------- fonts -----------------*/
+/* Product Sans */
+@font-face {
+	font-family: 'Product Sans';
+	src:url('ProductSans/ProductSans-Regular.eot');
+	src: local('Product Sans'), local('ProductSans-Regular'),
+		url('ProductSans/ProductSans-Regular.eot?#iefix') format('embedded-opentype'),
+		url('ProductSans/ProductSans-Regular.woff') format('woff'),
+		url('ProductSans/ProductSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	src:url('ProductSans/ProductSans-Medium.eot');
+	src: local('Product Sans'), local('ProductSans-Medium'),
+		url('ProductSans/ProductSans-Medium.eot?#iefix') format('embedded-opentype'),
+		url('ProductSans/ProductSans-Medium.woff') format('woff'),
+		url('ProductSans/ProductSans-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Product Sans';
+	src:url('ProductSans/ProductSans-Black.eot');
+	src: local('Product Sans'), local('ProductSans-Black'),
+		url('ProductSans/ProductSans-Black.eot?#iefix') format('embedded-opentype'),
+		url('ProductSans/ProductSans-Black.woff') format('woff'),
+		url('ProductSans/ProductSans-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+/* Rubik */
+@font-face {
+	font-family: 'Rubik';
+	src: url('Rubik-Regular.eot');
+	src: url('Rubik-Regular.eot?#iefix') format('embedded-opentype'),
+	url('Rubik-Regular.woff2') format('woff2'),
+	url('Rubik-Regular.woff') format('woff'),
+	url('Rubik-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('Rubik-Medium.eot');
+	src: url('Rubik-Medium.eot?#iefix') format('embedded-opentype'),
+	url('Rubik-Medium.woff2') format('woff2'),
+	url('Rubik-Medium.woff') format('woff'),
+	url('Rubik-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('Rubik-Black.eot');
+	src: url('Rubik-Black.eot?#iefix') format('embedded-opentype'),
+	url('Rubik-Black.woff2') format('woff2'),
+	url('Rubik-Black.woff') format('woff'),
+	url('Rubik-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
