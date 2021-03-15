@@ -1,0 +1,141 @@
+<!--User Profile Starts-->
+<!--Basic User Details Starts-->
+<section id="user-profile">
+    <div class="row">
+        <div class="col-12">
+            <div class="card profile-with-cover">
+              <div class="card-img-top img-fluid bg-cover height-300"
+                   style="background: url('../../../assets/img/photos/14.jpg') 50%;"></div>
+              <div class="text-left user-name">
+                  <h3 class="card-title white">{{currentUser.firstname}}</h3>
+              </div>
+              <div class="cover-fixed-buttons">
+                <div class="text-right d-lg-block">
+                  <button *ngIf="!edit" (click)="startEdit()" type="button" class="btn btn-primary btn-raise"><i class="ft-edit-2"></i>ערוך</button>
+                  <button *ngIf="edit" (click)="save()" type="button" class="btn btn-success btn-raised"><i class="ft-save"></i>שמור</button>
+                  <button *ngIf="edit" (click)="edit = !edit; imageSrc = null" type="button" class="btn btn-danger btn-raised"><i class="ft-delete"></i>בטל</button>
+                </div>
+              </div>
+
+                <a class="profile-image">
+                  <input type="file" (change)="selectFile($event)" #avatar class="d-none" >
+                  <img [src]="imageSrc || currentUser.avatar"
+                       (click)="edit ? avatar.click() : null"
+                       class="rounded-circle img-border gradient-summer width-100 height-100" alt="Card image">
+                </a>
+                <div class="profile-section">
+                  <ul class="profile-menu no-list-style">
+                    <li class="col-3">
+                      <div [ngClass]="currentPage === 'About' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">
+                        <a (click)="showPage('About')" >פרטים אישיים</a>
+                      </div>
+                    </li>
+                    <li class="col-3">
+                      <div [ngClass]="currentPage === 'MyGames' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">
+                        <a (click)="showPage('MyGames')" >המשחקים שלי</a>
+                      </div>
+                    </li>
+                    <li class="col-3">
+                      <div [ngClass]="currentPage === 'business' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">
+                        <a (click)="showPage('business')" >העסקים שלי</a>
+                      </div>
+                    </li>
+                    <li class="col-3">
+                    </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Basic User Details Ends-->
+
+<!--About section starts-->
+<section id="about" *ngIf="currentPage === 'About'">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                    <form [formGroup]="form" fxLayout="column">
+                      <div class="mb-2">
+                        <span class="text-bold-500 primary h5">פרטים אישיים:</span>
+                      </div>
+                      <div class="row">
+
+                          <div class="col-6">
+                              <ul class="no-list-style">
+                                  <li class="mb-2">
+                                    <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> גבר/אישה:</a></span>
+                                    <span *ngIf="!edit" class="d-block overflow-hidden">גבר</span>
+                                    <div *ngIf="edit">
+                                      <mat-radio-group aria-label="Select an option" formControlName="gender">
+                                        <mat-radio-button [value]="0">גבר</mat-radio-button><br>
+                                        <mat-radio-button [value]="1">אישה</mat-radio-button>
+                                      </mat-radio-group>
+                                    </div>
+                                  </li>
+                                  <li class="mb-2">
+                                    <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> מספר טלפון:</a></span>
+                                    <span class="d-block overflow-hidden">{{currentUser.phone}}</span>
+                                  </li>
+                              </ul>
+                          </div>
+                          <div class="col-6">
+                              <ul class="no-list-style">
+                                  <li class="mb-2" *ngIf="edit">
+                                    <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> שם מלא:</a></span>
+                                    <div>
+                                      <input type="text" formControlName="name" />
+                                    </div>
+                                  </li>
+                                  <li class="mb-2">
+                                    <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> כתובת דוא"ל:</a></span>
+                                    <span *ngIf="!edit" class="d-block overflow-hidden">{{currentUser.email == '' ? 'לא הוגדר' : currentUser.email}}</span>
+                                    <div *ngIf="edit">
+                                      <input type="text" formControlName="email" />
+                                    </div>
+                                  </li>
+                                  <li class="mb-2">
+                                    <span class="text-bold-500 primary"><a><i class="ft-book font-small-3"></i> תאריך הצטרפות:</a></span>
+                                    <span class="d-block overflow-hidden">10/01/2020</span>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                    </form>
+                    <hr>
+                    <div class="mt-3 mb-2">
+                        <span class="text-bold-500 primary h5">תחביבים:</span>
+                        <span class="d-block overflow-hidden">
+                          אנו ממליצים לציין מה הם התחביבים שלך על מנת שנוכל למקד אותך טוב יותר למשחקים שמתאימים עבורך.
+                        </span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--About section ends-->
+
+<!--User Timeline section starts-->
+<!--<section *ngIf="currentPage === 'MyGames'">-->
+<!--    <div class="container">-->
+<!--      <app-treasure-hunt-view [dogParks]="dogParks"></app-treasure-hunt-view>-->
+<!--    </div>-->
+<!--    <div *ngIf="currentUser.user_type === userTypes.DogOwner" class="container">-->
+<!--      <app-my-games></app-my-games>-->
+<!--    </div>-->
+<!--</section>-->
+<!--User Timeline section ends-->
+
+
+<!--User's uploaded photos section starts-->
+<!--<section id="business" *ngIf="currentUser.user_type === userTypes.BusinessOwner && currentPage === 'business'">-->
+<!--  <div class="container">-->
+<!--    <app-business-view [myBusinesses]="currentUser.businesses"></app-business-view>-->
+<!--  </div>-->
+<!--</section>-->
+<!--User's uploaded photos section starts-->
+<!--User Profile Starts-->
