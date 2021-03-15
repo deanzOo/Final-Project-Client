@@ -10,7 +10,13 @@ export enum ADMIN_AUTH_ENDPOINTS {
   AUTHENTICATE= 'admin/auth/authenticate',
 }
 
-export type END_POINTS = ADMIN_AUTH_ENDPOINTS;
+export enum CLIENT_AUTH_ENDPOINTS {
+  LOGIN = 'client/auth/login',
+  REGISTER = 'client/auth/register',
+  AUTHENTICATE = 'client/auth/authenticate',
+}
+
+export type END_POINTS = ADMIN_AUTH_ENDPOINTS | CLIENT_AUTH_ENDPOINTS;
 
 export interface ApiRequest {
   method: HTTP_METHODS;
@@ -19,7 +25,3 @@ export interface ApiRequest {
   body?: any;
 }
 
-export interface ApiResponse<T> {
-  success: boolean;
-  result: T;
-}

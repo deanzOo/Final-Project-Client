@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Client } from '../../../models/client/client';
 import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginModalComponent } from '../../login-modal/login-modal.component';
-import { RegisterModalComponent } from '../../register-modal/register-modal.component';
+import { ClientAuthModalComponent } from '../../login-modal/client-auth-modal.component';
 
 @Component({
   selector: 'app-client-header',
@@ -24,8 +23,9 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   login() {
-    this.dialog.open(LoginModalComponent, {
+    this.dialog.open(ClientAuthModalComponent, {
       width: '250px',
+      data: false
     }).afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
@@ -38,10 +38,12 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   register() {
-    this.dialog.open(RegisterModalComponent, {
+    this.dialog.open(ClientAuthModalComponent, {
       width: '250px',
+      data: true
     }).afterClosed().subscribe(result => {
       if (result) {
+        console.log(result);
       }
     });
   }

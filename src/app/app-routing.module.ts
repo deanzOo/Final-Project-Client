@@ -9,6 +9,7 @@ import { AdminLayoutComponent } from './admin/main/admin-layout/admin-layout.com
 import { UsersComponent } from './admin/main/users/users.component';
 import { ClientComponent } from './client/client.component';
 import { ClientMainComponent } from './client/client-layout/client-main/client-main.component';
+import { ClientProfilePageComponent } from './client/client-profile/client-profile-page.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: '',
         component: ClientMainComponent
+      },
+      {
+        path: 'profile',
+        component: ClientProfilePageComponent
       }
     ]
   }

@@ -34,11 +34,13 @@ import { ClientComponent } from './client/client.component';
 import { ClientMainComponent } from './client/client-layout/client-main/client-main.component';
 import { ClientHeaderComponent } from './client/client-layout/client-header/client-header.component';
 import { ClientFooterComponent } from './client/client-layout/client-footer/client-footer.component';
-import { LoginModalComponent } from './client/login-modal/login-modal.component';
-import { RegisterModalComponent } from './client/register-modal/register-modal.component';
+import { ClientAuthModalComponent } from './client/login-modal/client-auth-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ClientProfilePageComponent } from './client/client-profile/client-profile-page.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 @NgModule({
   declarations: [
@@ -56,8 +58,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ClientMainComponent,
     ClientHeaderComponent,
     ClientFooterComponent,
-    LoginModalComponent,
-    RegisterModalComponent
+    ClientAuthModalComponent,
+    ClientProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatRadioModule,
+    PerfectScrollbarModule
+
   ],
   providers: [
     AuthService

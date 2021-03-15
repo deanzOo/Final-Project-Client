@@ -16,8 +16,9 @@
                  alt="avatar image">
           </a>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="login-dropdown">
-            {{!currentUser ? 'שלום אורח' : 'שלום ' + currentUser.name}}
+            {{!currentUser ? 'שלום אורח' : 'שלום ' + currentUser.firstname}}
             <a *ngIf="!currentUser"  class="dropdown-item" (click)="login()" >התחבר</a>
+            <a *ngIf="!currentUser"  class="dropdown-item" (click)="register()" >הירשם</a>
             <a *ngIf="currentUser" class="dropdown-item" routerLink="/profile" >הפרופיל שלי</a>
             <a *ngIf="currentUser" class="dropdown-item" (click)="logout()">התנתק</a>
           </div>

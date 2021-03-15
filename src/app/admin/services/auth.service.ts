@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiAccessService } from '../../api-access.service';
-import { ADMIN_AUTH_ENDPOINTS, ApiResponse, HTTP_METHODS } from '../../models/types';
+import { ADMIN_AUTH_ENDPOINTS, HTTP_METHODS } from '../../models/types';
 import { BehaviorSubject } from 'rxjs';
 import { StorageService } from '../../storage.service';
 
@@ -20,10 +20,10 @@ export class AuthService {
         method: HTTP_METHODS.POST,
         endpoint: ADMIN_AUTH_ENDPOINTS.LOGIN,
         body: {userName, password}
-      }).subscribe((res: ApiResponse<{ token: string, user: any }>) => {
+      }).subscribe((res: { token: string, user: any }) => {
         this.loggedIn = true;
-        this.currentUser = res.result.user;
-        this.storageService.setItem('auth_key', res.result.token);
+        this.currentUser = res.user;
+        this.storageService.setItem('auth_key', res.token);
         resolve();
       }, err => {
         this.storageService.removeItem('auth_key');
@@ -38,9 +38,9 @@ export class AuthService {
         method: HTTP_METHODS.GET,
         endpoint: ADMIN_AUTH_ENDPOINTS.AUTHENTICATE,
         params: {auth_key: this.storageService.getItem('auth_key')}
-      }).subscribe((res: ApiResponse<{ user: any }>) => {
+      }).subscribe((res: { user: any }) => {
         this.loggedIn = true;
-        this.currentUser = res.result.user;
+        this.currentUser = res.user;
         resolve();
       }, err => {
         this.storageService.removeItem('auth_key');
