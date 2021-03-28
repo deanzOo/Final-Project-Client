@@ -4,9 +4,9 @@ import { Client } from '../../models/client/client';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { ClientAuthService } from '../services/client-auth.service';
 import { RegisterRequest } from '../../models/client/requests';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-client-auth-modal',
@@ -22,8 +22,9 @@ export class ClientAuthModalComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public isRegister: boolean,
+    private dialogRef: MatDialogRef<any>,
     private toastr: ToastrService,
-    private clientAuth: ClientAuthService
+    private clientAuth: AuthService
   ) { }
 
   form = new FormGroup({
@@ -38,9 +39,6 @@ export class ClientAuthModalComponent {
       Validators.maxLength(15)
     ]),
     email: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(15)
     ]),
     phone: new FormControl('', [
       Validators.required,
@@ -88,6 +86,7 @@ export class ClientAuthModalComponent {
       this.clientAuth.register(data).then(() => {
         this.toastr.success('נרשם בהצלחה');
         this.loading = false;
+        this.dialogRef.close();
       }, err => {
         this.toastr.error('הרשמנה נכשלה');
         this.loading = false;
@@ -104,6 +103,7 @@ export class ClientAuthModalComponent {
       this.clientAuth.login({phone: this.phone.value, password: this.password.value}).then(() => {
         this.toastr.success('התחברת בהצלחה');
         this.loading = false;
+        this.dialogRef.close();
       }, err => {
         this.toastr.error('ההתחברות נכשלה');
         this.loading = false;

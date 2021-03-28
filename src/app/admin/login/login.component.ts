@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +18,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(userName: string, password: string): void {
-    this.adminAuthService.login(userName, password).then(res => {
-      console.log(res);
-      this.router.navigate(['/admin/login']);
-    }, err => {
-      this.toastr.error('Error');
-      this.router.navigate(['/admin/main/dashboard']);
-    });
+    // this.adminAuthService.login(userName, password).then(res => {
+    //   console.log(res);
+    //   this.router.navigate(['/admin/login']);
+    // }, err => {
+    //   this.toastr.error('Error');
+    //   this.router.navigate(['/admin/main/dashboard']);
+    // });
   }
 
   showToast(): void {

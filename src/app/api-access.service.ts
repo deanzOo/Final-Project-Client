@@ -9,22 +9,20 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class ApiAccessService {
-  token: string;
   constructor(private httpClient: HttpClient, private storage: StorageService) {
   }
 
   public request<T>(apiRequestDetails: ApiRequest): Observable<T> {
     const headers = {...apiRequestDetails.params, ...{'Content-Type': 'application/json'}};
-    if (this.storage.getItem('token')) {
-      headers.Authorization = this.storage.getItem('token');
+    if (this.storage.getItem('Authorization')) {
+      headers.Authorization = this.storage.getItem('Authorization');
     }
     return this.httpClient.request<T>(
       apiRequestDetails.method,
       environment.apiUrl + apiRequestDetails.endpoint,
       {
         body: apiRequestDetails.body,
-        headers: apiRequestDetails.params,
-        withCredentials: true
+        headers
       }
     );
   }

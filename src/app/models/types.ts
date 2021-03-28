@@ -5,18 +5,13 @@ export enum HTTP_METHODS {
   DELETE = 'DELETE'
 }
 
-export enum ADMIN_AUTH_ENDPOINTS {
-  LOGIN = 'admin/auth/login',
-  AUTHENTICATE= 'admin/auth/authenticate',
+export enum AUTH_ENDPOINTS {
+  LOGIN = 'auth',
+  REGISTER = 'auth/register',
+  AUTHENTICATE= 'auth/authenticate',
 }
 
-export enum CLIENT_AUTH_ENDPOINTS {
-  LOGIN = 'client/auth/login',
-  REGISTER = 'client/auth/register',
-  AUTHENTICATE = 'client/auth/authenticate',
-}
-
-export type END_POINTS = ADMIN_AUTH_ENDPOINTS | CLIENT_AUTH_ENDPOINTS;
+export type END_POINTS = AUTH_ENDPOINTS;
 
 export interface ApiRequest {
   method: HTTP_METHODS;

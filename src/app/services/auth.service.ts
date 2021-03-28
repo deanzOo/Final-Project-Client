@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Client } from '../../models/client/client';
-import { StorageService } from '../../storage.service';
-import { ApiAccessService } from '../../api-access.service';
 import { Router } from '@angular/router';
-import { CLIENT_AUTH_ENDPOINTS, HTTP_METHODS } from '../../models/types';
-import { LoginRequest, RegisterRequest } from '../../models/client/requests';
+import { Client } from '../models/client/client';
+import { StorageService } from '../storage.service';
+import { ApiAccessService } from '../api-access.service';
+import { LoginRequest, RegisterRequest } from '../models/client/requests';
+import { AUTH_ENDPOINTS, HTTP_METHODS } from '../models/types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientAuthService {
+export class AuthService {
   loggedIn = false;
   currentUser = new BehaviorSubject<Client>(null);
 
@@ -20,19 +20,22 @@ export class ClientAuthService {
     private router: Router
   ) { }
 
-  login(data: LoginRequest) {
+  login(data: LoginRequest = null) {
     return new Promise((resolve, reject) => {
+      if (!data && !this.storage.getItem('Authorization')) {
+        reject();
+      }
       this.api.request({
-        method: HTTP_METHODS.GET,
-        endpoint: CLIENT_AUTH_ENDPOINTS.LOGIN,
+        method: HTTP_METHODS.POST,
+        endpoint: AUTH_ENDPOINTS.LOGIN,
         body: data
       }).subscribe((response: Client) => {
-        if (response.token) {
-          this.storage.setItem('Authorization', response.token);
+        if (response.session_key) {
+          this.storage.setItem('Authorization', response.session_key);
         }
         this.loggedIn = true;
         this.currentUser.next(response);
-        resolve(this.loggedIn);
+        resolve(response);
       }, err => {
         this.loggedIn = false;
         this.currentUser.next(null);
@@ -44,12 +47,12 @@ export class ClientAuthService {
   register(data: RegisterRequest) {
     return new Promise((resolve, reject) => {
       this.api.request({
-        method: HTTP_METHODS.GET,
-        endpoint: CLIENT_AUTH_ENDPOINTS.REGISTER,
+        method: HTTP_METHODS.POST,
+        endpoint: AUTH_ENDPOINTS.REGISTER,
         body: data
       }).subscribe((response: Client) => {
-        if (response.token) {
-          this.storage.setItem('Authorization', response.token);
+        if (response.session_key) {
+          this.storage.setItem('Authorization', response.session_key);
         }
         this.loggedIn = true;
         this.currentUser.next(response);
@@ -64,9 +67,8 @@ export class ClientAuthService {
 
   logout() {
     this.loggedIn = false;
-    this.storage.removeItem('token');
+    this.storage.removeItem('Authorization');
     this.currentUser.next(null);
     this.router.navigate(['/']);
   }
 }
-

@@ -3,6 +3,7 @@ import { Client } from '../../../models/client/client';
 import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientAuthModalComponent } from '../../login-modal/client-auth-modal.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-client-header',
@@ -12,8 +13,16 @@ import { ClientAuthModalComponent } from '../../login-modal/client-auth-modal.co
 export class ClientHeaderComponent implements OnInit {
   currentUser: Client;
 
-  constructor(@Inject(DOCUMENT) public document,
-              private dialog: MatDialog) { }
+  constructor(
+    @Inject(DOCUMENT) public document,
+    private dialog: MatDialog,
+    private authService: AuthService
+  ) {
+    this.authService.currentUser.subscribe(client => {
+      console.log(client);
+      this.currentUser = client;
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -34,7 +43,7 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   logout() {
-    // this.userAuth.logout();
+    this.authService.logout();
   }
 
   register() {

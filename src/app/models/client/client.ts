@@ -5,5 +5,6 @@ export interface Client {
   email: string;
   phone: string;
   avatar: string;
-  token?: string;
+  isAdmin: boolean;
+  session_key?: string;
 }

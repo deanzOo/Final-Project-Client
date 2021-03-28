@@ -104,7 +104,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "logo-generator:build"
+            "browserTarget": "logo-generator:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

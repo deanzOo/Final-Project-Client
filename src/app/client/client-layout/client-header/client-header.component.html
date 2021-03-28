@@ -10,9 +10,9 @@
       <ul>
         <li class="nav-item avatar dropdown">
           <a class="nav-link dropdown-toggle" id="login-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img *ngIf="!currentUser || (currentUser && currentUser.avatar === '')" src="https://s3-eu-west-1.amazonaws.com/files.doggiehunt/defaultAvater.jpg" class="rounded-circle z-depth-0 width-50 height-50"
+            <img *ngIf="!currentUser || (currentUser && !currentUser.avatar)" src="../../../assets/img/defaultAvater.jpg" class="rounded-circle z-depth-0 width-50 height-50"
                  alt="avatar image">
-            <img *ngIf="currentUser && currentUser.avatar.length" [src]="currentUser.avatar" class="rounded-circle z-depth-0 width-50 height-50"
+            <img *ngIf="currentUser && currentUser.avatar && currentUser.avatar.length" [src]="currentUser.avatar" class="rounded-circle z-depth-0 width-50 height-50"
                  alt="avatar image">
           </a>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="login-dropdown">
@@ -21,6 +21,7 @@
             <a *ngIf="!currentUser"  class="dropdown-item" (click)="register()" >הירשם</a>
             <a *ngIf="currentUser" class="dropdown-item" routerLink="/profile" >הפרופיל שלי</a>
             <a *ngIf="currentUser" class="dropdown-item" (click)="logout()">התנתק</a>
+            <a *ngIf="currentUser && currentUser.isAdmin" class="dropdown-item" routerLink="/admin" >ממשק ניהול</a>
           </div>
         </li>
       </ul>

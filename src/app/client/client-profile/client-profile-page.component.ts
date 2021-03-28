@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../../models/client/client';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -11,22 +12,19 @@ import { Client } from '../../models/client/client';
 })
 
 export class ClientProfilePageComponent implements OnInit {
-  currentUser: Client = {
-    id: 12,
-    firstname: 'Dor',
-    lastname: 'Shoshan',
-    email: 'dor.shoshan12@gmail.com',
-    phone: '0546484372',
-    avatar: ''
-  };
+  currentUser: Client;
   editTmpCurrentUser: Client;
   currentPage = 'About';
   edit = false;
   selectedFiles: FileList;
-  imageSrc: string | ArrayBuffer;
+  imageSrc: string | ArrayBuffer = '../../../assets/img/defaultAvater.jpg';
 
   constructor(
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private authService: AuthService
+  ) {
+    this.authService.currentUser.subscribe(client => this.currentUser = client);
+  }
 
   form = new FormGroup({
     firstname: new FormControl('', [Validators.required, Validators.minLength(3)]),

@@ -1,5 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://apinew.geteat.co.il/'
-  // apiUrl: 'https://api.deep-logo.co.il/'
+  apiUrl: 'http://104.248.87.188:5000/'
 };

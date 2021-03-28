@@ -23,7 +23,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
-import { AuthService } from './admin/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardChartComponent } from './admin/main/dashboard/dashboard-chart/dashboard-chart.component';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -41,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ClientProfilePageComponent } from './client/client-profile/client-profile-page.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +75,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     MatFormFieldModule,
     MatInputModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-left'
+      positionClass: 'toast-top-right'
     }),
     HttpClientModule,
     GoogleChartsModule,
@@ -89,7 +89,6 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     ModalModule.forRoot(),
     MatRadioModule,
     PerfectScrollbarModule
-
   ],
   providers: [
     AuthService

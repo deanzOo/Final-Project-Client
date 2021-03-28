@@ -32,13 +32,10 @@
                     </li>
                     <li class="col-3">
                       <div [ngClass]="currentPage === 'MyGames' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">
-                        <a (click)="showPage('MyGames')" >המשחקים שלי</a>
+                        <a (click)="showPage('MyGames')" >הלוגואים שלי</a>
                       </div>
                     </li>
                     <li class="col-3">
-                      <div [ngClass]="currentPage === 'business' ? 'primary font-medium-2 font-weight-600 active' : 'primary font-medium-2 font-weight-600'">
-                        <a (click)="showPage('business')" >העסקים שלי</a>
-                      </div>
                     </li>
                     <li class="col-3">
                     </li>
@@ -104,13 +101,6 @@
                           </div>
                       </div>
                     </form>
-                    <hr>
-                    <div class="mt-3 mb-2">
-                        <span class="text-bold-500 primary h5">תחביבים:</span>
-                        <span class="d-block overflow-hidden">
-                          אנו ממליצים לציין מה הם התחביבים שלך על מנת שנוכל למקד אותך טוב יותר למשחקים שמתאימים עבורך.
-                        </span>
-                    </div>
                   </div>
                 </div>
             </div>
@@ -118,24 +108,3 @@
     </div>
 </section>
 <!--About section ends-->
-
-<!--User Timeline section starts-->
-<!--<section *ngIf="currentPage === 'MyGames'">-->
-<!--    <div class="container">-->
-<!--      <app-treasure-hunt-view [dogParks]="dogParks"></app-treasure-hunt-view>-->
-<!--    </div>-->
-<!--    <div *ngIf="currentUser.user_type === userTypes.DogOwner" class="container">-->
-<!--      <app-my-games></app-my-games>-->
-<!--    </div>-->
-<!--</section>-->
-<!--User Timeline section ends-->
-
-
-<!--User's uploaded photos section starts-->
-<!--<section id="business" *ngIf="currentUser.user_type === userTypes.BusinessOwner && currentPage === 'business'">-->
-<!--  <div class="container">-->
-<!--    <app-business-view [myBusinesses]="currentUser.businesses"></app-business-view>-->
-<!--  </div>-->
-<!--</section>-->
-<!--User's uploaded photos section starts-->
-<!--User Profile Starts-->
