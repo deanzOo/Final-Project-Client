@@ -18,6 +18,6 @@ export class ClientGuard implements CanActivate {
     if (this.authService.currentUser.value) {
       return true;
     }
-    this.router.navigate(['/']);
+    return this.authService.authenticate();
   }
 }

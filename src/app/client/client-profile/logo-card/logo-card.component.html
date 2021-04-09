@@ -1,0 +1,19 @@
+<div class="logo-card" fxLayout="column" fxLayoutAlign="center center">
+  <h3>{{title}}</h3>
+  <img [src]="imageUrlBase + logo.url">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <span>צבעים:</span>
+    <bar-rating [(rate)]="colorsRate" [readOnly]="logo?.rated" [max]="5"></bar-rating>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <span>חדות:</span>
+    <bar-rating [(rate)]="sharpnessRate" [readOnly]="logo?.rated" [max]="5"></bar-rating>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <span>צורה:</span>
+    <bar-rating [(rate)]="shapeRate" [readOnly]="logo?.rated" [max]="5"></bar-rating>
+  </div>
+  <div>
+    <button (click)="rateLogo()" *ngIf="!(logo?.rated)">שלח דירוג</button>
+  </div>
+</div>

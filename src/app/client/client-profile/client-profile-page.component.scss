@@ -11,6 +11,10 @@
 }
 section {
   padding: 0;
+  min-height: 200px;
+  div {
+    min-height: 100%;
+  }
   .card {
     margin: 0;
   }
@@ -83,5 +87,12 @@ section {
     mat-checkbox {
       margin-bottom: 0.25rem;
     }
+  }
+}
+
+#my-logos {
+  padding: 20px;
+  img {
+    padding-top: 10px;
   }
 }

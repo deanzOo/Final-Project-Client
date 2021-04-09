@@ -22,6 +22,7 @@ export class ApiAccessService {
       environment.apiUrl + apiRequestDetails.endpoint,
       {
         body: apiRequestDetails.body,
+        params: apiRequestDetails.params,
         headers
       }
     );

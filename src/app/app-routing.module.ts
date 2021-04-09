@@ -10,6 +10,8 @@ import { ClientMainComponent } from './client/client-layout/client-main/client-m
 import { ClientProfilePageComponent } from './client/client-profile/client-profile-page.component';
 import { AdminGuard } from './guard/admin.guard';
 import { ClientGuard } from './guard/client.guard';
+import { UserResolver } from './resolvers/users.resolver';
+import { LogosResolver } from './resolvers/logos.resolver';
 
 const routes: Routes = [
   {
@@ -35,7 +37,10 @@ const routes: Routes = [
           },
           {
             path: 'users',
-            component: UsersComponent
+            component: UsersComponent,
+            resolve: {
+              users: UserResolver
+            }
           }
         ]
       }
@@ -52,7 +57,10 @@ const routes: Routes = [
       {
         path: 'profile',
         canActivate: [ClientGuard],
-        component: ClientProfilePageComponent
+        component: ClientProfilePageComponent,
+        resolve: {
+          logos: LogosResolver
+        }
       }
     ]
   }

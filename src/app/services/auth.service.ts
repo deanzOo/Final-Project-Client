@@ -38,8 +38,28 @@ export class AuthService {
         resolve(response);
       }, err => {
         this.loggedIn = false;
+        this.storage.removeItem('Authorization');
         this.currentUser.next(null);
         reject(err);
+      });
+    });
+  }
+
+  authenticate(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.api.request({
+        method: HTTP_METHODS.POST,
+        endpoint: AUTH_ENDPOINTS.LOGIN,
+      }).subscribe((response: Client) => {
+        if (response.session_key) {
+          this.storage.setItem('Authorization', response.session_key);
+        }
+        resolve(true);
+      }, err => {
+        this.loggedIn = false;
+        this.storage.removeItem('Authorization');
+        this.currentUser.next(null);
+        reject(false);
       });
     });
   }

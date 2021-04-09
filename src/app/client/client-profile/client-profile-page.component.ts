@@ -3,7 +3,12 @@ import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Client } from '../../models/client/client';
 import { AuthService } from '../../services/auth.service';
-
+import { environment } from '../../../environments/environment';
+import { Logo } from '../../models/logos/logos';
+import { ActivatedRoute } from '@angular/router';
+import { Gallery } from 'angular-gallery';
+import { LogosService } from '../../services/logos.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-client-profile-page',
@@ -18,10 +23,18 @@ export class ClientProfilePageComponent implements OnInit {
   edit = false;
   selectedFiles: FileList;
   imageSrc: string | ArrayBuffer = '../../../assets/img/defaultAvater.jpg';
+  imageUrlBase = environment.logoUrlBase;
+  logos: Logo[];
+  logosGallery: {path: string}[];
+  currentLogos: Logo[];
 
   constructor(
+    private rout: ActivatedRoute,
     private toastr: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private gallery: Gallery,
+    private logoService: LogosService,
+    private loadingService: LoadingService
   ) {
     this.authService.currentUser.subscribe(client => this.currentUser = client);
   }
@@ -32,6 +45,13 @@ export class ClientProfilePageComponent implements OnInit {
     email: new FormControl('', [])
   });
 
+  ngOnInit() {
+    this.logos = this.rout.snapshot.data.logos;
+    this.logosGallery = this.logos.map(logo => {
+      return {path: this.imageUrlBase + logo.url};
+    });
+  }
+
   get firstname() {
     return this.form.get('firstname');
   }
@@ -41,31 +61,6 @@ export class ClientProfilePageComponent implements OnInit {
 
   get email() {
     return this.form.get('email');
-  }
-
-  ngOnInit() {
-  }
-
-  upload() {
-    // return new Promise<boolean>((resolve, reject) => {
-    //   if (this.selectedFiles && this.selectedFiles.item) {
-    //     const file = this.selectedFiles.item(0);
-    //     console.log('file', file);
-    //     const name = this.editTmpCurrentUser.id + 'Avatar.' + file.name.split('.')[file.name.split('.').length - 1];
-    //     if (file.type.indexOf('image') < 0) {
-    //       reject('סוג קובץ לא חוקי');
-    //     }
-    //     this.uploadService.uploadFile(file, name).then((res) =>  {
-    //       this.editTmpCurrentUser.avatar = name;
-    //       resolve();
-    //     }, () => {
-    //       reject('העלאת קובץ נכשלה');
-    //     });
-    //   } else {
-    //     this.editTmpCurrentUser.avatar = '';
-    //     resolve();
-    //   }
-    // });
   }
 
   save() {
@@ -129,4 +124,25 @@ export class ClientProfilePageComponent implements OnInit {
     this.edit = !this.edit;
   }
 
+  showGallery(index: number) {
+    const prop = {
+      images: this.logosGallery,
+      index
+    };
+    this.gallery.load(prop);
+  }
+
+  createLogo() {
+    this.loadingService.setLoading(true);
+    this.logoService.create().then(logo => {
+      this.loadingService.setLoading(false);
+      this.toastr.success('פעולה הושלמה, אל תשכך לדרג את הלוגו');
+      this.currentLogos = logo;
+      this.logos = this.logos.concat(logo);
+      console.log(logo);
+    }).catch(err => {
+      this.loadingService.setLoading(false);
+      this.toastr.success('פעולה נכשלה');
+    });
+  }
 }

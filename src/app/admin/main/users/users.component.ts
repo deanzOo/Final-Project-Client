@@ -1,26 +1,47 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-
-const ELEMENT_DATA: any[] = [
-  {active: false, id: 1, name: 'משתמש בדיקה 1', logos: 30, created_at: '2019-08-10'},
-  {active: false, id: 2, name: 'משתמש בדיקה 2', logos: 24, created_at: '2019-08-19'},
-  {active: false, id: 3, name: 'משתמש בדיקה 3', logos: 25, created_at: '2019-09-13'},
-  {active: true, id: 4, name: 'משתמש בדיקה 4', logos: 16, created_at: '2019-11-12'},
-  {active: false, id: 5, name: 'משתמש בדיקה 5', logos: 40, created_at: '2019-08-28'}
-];
+import { UsersService } from '../../../services/users.service';
+import { Client } from '../../../models/client/client';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'logos', 'created_at', 'action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class UsersComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'phone', 'isAdmin', 'action'];
+  dataSource: MatTableDataSource<Client>;
+  users: Client[];
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(
+    private userService: UsersService,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private rout: ActivatedRoute
+    ) { }
+
+  ngOnInit() {
+    this.users = this.rout.snapshot.data.users;
+    this.dataSource = new MatTableDataSource<Client>(this.users);
+  }
+
+  delete(id: number) {
+    if (this.authService.currentUser.value.id === id) {
+      this.toastr.error('אין אפשרות למחוק את עצמך');
+      return;
+    }
+    this.userService.delete(id).then(() => {
+      this.users = this.users.filter(user => user.id !== id);
+      this.toastr.success('הפעולה הושלמה בהצלחה');
+    }).catch(() => {
+      this.toastr.error('הפעולה נכשלה');
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

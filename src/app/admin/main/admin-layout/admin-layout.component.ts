@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardItem, MenuLink } from '../../../models/admin/dashboardItem';
+import { MenuLink } from '../../../models/admin/dashboardItem';
 
 @Component({
   selector: 'app-admin-layout',

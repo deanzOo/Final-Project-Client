@@ -41,6 +41,14 @@ import { ClientProfilePageComponent } from './client/client-profile/client-profi
 import { MatRadioModule } from '@angular/material/radio';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { AuthService } from './services/auth.service';
+import { UserResolver } from './resolvers/users.resolver';
+import { UsersService } from './services/users.service';
+import { LogosService } from './services/logos.service';
+import { LogosResolver } from './resolvers/logos.resolver';
+import { IvyGalleryModule } from 'angular-gallery';
+import { LoadingService } from './services/loading.service';
+import { LogoCardComponent } from './client/client-profile/logo-card/logo-card.component';
+import { BarRatingModule } from 'ngx-bar-rating';
 
 @NgModule({
   declarations: [
@@ -59,7 +67,8 @@ import { AuthService } from './services/auth.service';
     ClientHeaderComponent,
     ClientFooterComponent,
     ClientAuthModalComponent,
-    ClientProfilePageComponent
+    ClientProfilePageComponent,
+    LogoCardComponent
   ],
   imports: [
     BrowserModule,
@@ -88,10 +97,17 @@ import { AuthService } from './services/auth.service';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     MatRadioModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    IvyGalleryModule,
+    BarRatingModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    UsersService,
+    UserResolver,
+    LogosService,
+    LogosResolver,
+    LoadingService
   ],
   bootstrap: [AppComponent]
 })
