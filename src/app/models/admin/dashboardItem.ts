@@ -36,3 +36,23 @@ export interface DashboardChart {
   size: number;
 }
 
+export interface LogosRatingsMeans {
+  mean_color_rate: number;
+  mean_shape_rate: number;
+  mean_sharpness_rate: number;
+}
+
+export interface DashboardData {
+  userCount: number;
+  logoCount: number;
+  logoRatings: number;
+  logos_ratings_means: LogosRatingsMeans;
+  losses: Losses;
+}
+
+export interface Losses {
+  generator: number[];
+  discriminator: number[];
+}
+
+

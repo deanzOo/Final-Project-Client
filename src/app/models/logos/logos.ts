@@ -7,6 +7,7 @@ export interface Logo {
   url: string;
   ratings: Rate[];
   rated?: boolean;
+  saved?: boolean;
 }
 
 export interface Rate {

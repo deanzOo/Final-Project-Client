@@ -49,6 +49,8 @@ import { IvyGalleryModule } from 'angular-gallery';
 import { LoadingService } from './services/loading.service';
 import { LogoCardComponent } from './client/client-profile/logo-card/logo-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
+import { DashboardResolver } from './resolvers/dashboard.resolver';
+import { AdminService } from './services/admin.service';
 
 @NgModule({
   declarations: [
@@ -107,7 +109,9 @@ import { BarRatingModule } from 'ngx-bar-rating';
     UserResolver,
     LogosService,
     LogosResolver,
-    LoadingService
+    LoadingService,
+    DashboardResolver,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

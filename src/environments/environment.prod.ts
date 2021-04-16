@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.deep-logo.co.il/',
+  apiUrl: 'http://104.248.87.188:5000/',
   logoUrlBase: 'https://deep-logo-image.s3.eu-west-1.amazonaws.com/logos/'
 };

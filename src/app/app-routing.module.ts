@@ -12,6 +12,7 @@ import { AdminGuard } from './guard/admin.guard';
 import { ClientGuard } from './guard/client.guard';
 import { UserResolver } from './resolvers/users.resolver';
 import { LogosResolver } from './resolvers/logos.resolver';
+import { DashboardResolver } from './resolvers/dashboard.resolver';
 
 const routes: Routes = [
   {
@@ -25,11 +26,17 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: DashboardComponent
+            component: DashboardComponent,
+            resolve: {
+              dashboard: DashboardResolver
+            }
           },
           {
             path: 'dashboard',
-            component: DashboardComponent
+            component: DashboardComponent,
+            resolve: {
+              dashboard: DashboardResolver
+            }
           },
           {
             path: 'models',

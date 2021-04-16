@@ -43,4 +43,18 @@ export class LogoCardComponent implements OnInit {
       this.toastr.error('הפעולה נכשלה');
     });
   }
+
+  saveLogo() {
+    this.loadingService.setLoading(false);
+    this.logoService.save(this.logo.id).then(() => {
+      this.loadingService.setLoading(false);
+      this.toastr.success('לוגו נשמר בהצלחה');
+      this.logo.saved = true;
+      this.logo.rated = false;
+    }).catch(err => {
+      console.log(err);
+      this.loadingService.setLoading(false);
+      this.toastr.error('הפעולה נכשלה');
+    });
+  }
 }

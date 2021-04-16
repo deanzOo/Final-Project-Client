@@ -9,6 +9,6 @@ export class LogosResolver implements Resolve<Logo[]> {
   constructor(private logosService: LogosService) {}
 
   resolve() {
-    return this.logosService.get();
+    return this.logosService.get({my_logos: 1, saved: 1});
   }
 }

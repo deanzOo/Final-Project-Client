@@ -31,7 +31,7 @@ export class ClientProfilePageComponent implements OnInit {
   constructor(
     private rout: ActivatedRoute,
     private toastr: ToastrService,
-    private authService: AuthService,
+    public authService: AuthService,
     private gallery: Gallery,
     private logoService: LogosService,
     private loadingService: LoadingService
@@ -136,7 +136,7 @@ export class ClientProfilePageComponent implements OnInit {
     this.loadingService.setLoading(true);
     this.logoService.create().then(logo => {
       this.loadingService.setLoading(false);
-      this.toastr.success('פעולה הושלמה, אל תשכך לדרג את הלוגו');
+      this.toastr.success('פעולה הושלמה, אל תשכח לדרג את הלוגו');
       this.currentLogos = logo;
       this.logos = this.logos.concat(logo);
       console.log(logo);

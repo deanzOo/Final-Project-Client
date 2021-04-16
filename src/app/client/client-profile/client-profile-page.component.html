@@ -7,7 +7,7 @@
               <div class="card-img-top img-fluid bg-cover height-300"
                    style="background: url('../../../assets/img/photos/14.jpg') 50%;"></div>
               <div class="text-left user-name">
-                  <h3 class="card-title white">{{currentUser.firstname}}</h3>
+                  <h3 class="card-title white">{{(authService.currentUser | async)?.firstname}}</h3>
               </div>
               <div class="cover-fixed-buttons">
                 <div class="text-right d-lg-block">
@@ -19,7 +19,7 @@
 
                 <a class="profile-image">
                   <input type="file" (change)="selectFile($event)" #avatar class="d-none" >
-                  <img [src]="imageSrc || currentUser.avatar"
+                  <img [src]="imageSrc || (authService.currentUser | async)?.avatar"
                        (click)="edit ? avatar.click() : null"
                        class="rounded-circle img-border gradient-summer width-100 height-100" alt="Card image">
                 </a>
@@ -77,7 +77,7 @@
                                   </li>
                                   <li class="mb-2">
                                     <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> מספר טלפון:</a></span>
-                                    <span class="d-block overflow-hidden">{{currentUser.phone}}</span>
+                                    <span class="d-block overflow-hidden">{{(authService.currentUser | async)?.phone}}</span>
                                   </li>
                               </ul>
                           </div>
@@ -91,7 +91,7 @@
                                   </li>
                                   <li class="mb-2">
                                     <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> כתובת דוא"ל:</a></span>
-                                    <span *ngIf="!edit" class="d-block overflow-hidden">{{currentUser.email == '' ? 'לא הוגדר' : currentUser.email}}</span>
+                                    <span *ngIf="!edit" class="d-block overflow-hidden">{{(authService.currentUser | async)?.email == '' ? 'לא הוגדר' : (authService.currentUser | async)?.email}}</span>
                                     <div *ngIf="edit">
                                       <input type="text" formControlName="email" />
                                     </div>
@@ -131,7 +131,7 @@
     <button mat-raised-button color="primary" (click)="currentLogos = null">חזור ליצירה</button>
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
       <div *ngFor="let logo of currentLogos">
-        <app-logo-card [logo]="logo" [title]="'לוגו חדש'"></app-logo-card>
+        <app-logo-card [logo]="logo"></app-logo-card>
       </div>
     </div>
   </ng-template>
