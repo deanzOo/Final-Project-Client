@@ -134,15 +134,21 @@ export class ClientProfilePageComponent implements OnInit {
 
   createLogo() {
     this.loadingService.setLoading(true);
-    this.logoService.create().then(logo => {
+    this.logoService.create().then(logos => {
       this.loadingService.setLoading(false);
       this.toastr.success('פעולה הושלמה, אל תשכח לדרג את הלוגו');
-      this.currentLogos = logo;
-      this.logos = this.logos.concat(logo);
-      console.log(logo);
+      this.currentLogos = logos;
+      console.log(logos);
     }).catch(err => {
       this.loadingService.setLoading(false);
       this.toastr.success('פעולה נכשלה');
+    });
+  }
+
+  logoSaved(logo) {
+    this.logos = this.logos.concat(logo);
+    this.logosGallery = this.logos.map(l => {
+      return {path: this.imageUrlBase + l.url};
     });
   }
 }

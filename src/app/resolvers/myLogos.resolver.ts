@@ -4,11 +4,11 @@ import { LogosService } from '../services/logos.service';
 import { Logo } from '../models/logos/logos';
 
 @Injectable()
-export class LogosResolver implements Resolve<Logo[]> {
+export class MyLogosResolver implements Resolve<Logo[]> {
 
   constructor(private logosService: LogosService) {}
 
   resolve() {
-    return this.logosService.get();
+    return this.logosService.get({my_logos: 1, saved: 1});
   }
 }

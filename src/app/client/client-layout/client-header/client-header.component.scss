@@ -36,3 +36,12 @@
   }
 }
 
+.gallery {
+  color: #5777ba!important;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline!important;
+  }
+}
+

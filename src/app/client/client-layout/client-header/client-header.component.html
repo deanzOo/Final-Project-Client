@@ -9,6 +9,11 @@
     <nav class="nav-menu">
       <ul>
         <li class="nav-item avatar dropdown">
+          <a class="nav-link gallery" [routerLink]="'gallery'">
+            גלרייה
+          </a>
+        </li>
+        <li class="nav-item avatar dropdown">
           <a class="nav-link dropdown-toggle" id="login-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img *ngIf="!currentUser || (currentUser && !currentUser.avatar)" src="../../../assets/img/defaultAvater.jpg" class="rounded-circle z-depth-0 width-50 height-50"
                  alt="avatar image">

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Logo } from '../../../models/logos/logos';
 import { LogosService } from '../../../services/logos.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,6 +13,7 @@ import { environment } from '../../../../environments/environment';
 export class LogoCardComponent implements OnInit {
   @Input() logo: Logo;
   @Input() title: string;
+  @Output() savedLogo = new EventEmitter(false);
   imageUrlBase = environment.logoUrlBase;
   colorsRate: number;
   sharpnessRate: number;
@@ -21,7 +22,8 @@ export class LogoCardComponent implements OnInit {
   constructor(
     private logoService: LogosService,
     private toastr: ToastrService,
-    private loadingService: LoadingService) { }
+    private loadingService: LoadingService
+    ) {}
 
   ngOnInit(): void {
   }
@@ -49,8 +51,9 @@ export class LogoCardComponent implements OnInit {
     this.logoService.save(this.logo.id).then(() => {
       this.loadingService.setLoading(false);
       this.toastr.success('לוגו נשמר בהצלחה');
-      this.logo.saved = true;
       this.logo.rated = false;
+      this.logo.saved = true;
+      this.savedLogo.emit(this.logo);
     }).catch(err => {
       console.log(err);
       this.loadingService.setLoading(false);

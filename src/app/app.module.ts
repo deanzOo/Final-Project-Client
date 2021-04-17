@@ -51,6 +51,9 @@ import { LogoCardComponent } from './client/client-profile/logo-card/logo-card.c
 import { BarRatingModule } from 'ngx-bar-rating';
 import { DashboardResolver } from './resolvers/dashboard.resolver';
 import { AdminService } from './services/admin.service';
+import { MyLogosResolver } from './resolvers/myLogos.resolver';
+import { GalleryComponent } from './client/gallery/gallery.component';
+import { RateLogoComponent } from './client/gallery/rate-logo/rate-logo.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +73,9 @@ import { AdminService } from './services/admin.service';
     ClientFooterComponent,
     ClientAuthModalComponent,
     ClientProfilePageComponent,
-    LogoCardComponent
+    LogoCardComponent,
+    GalleryComponent,
+    RateLogoComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +114,7 @@ import { AdminService } from './services/admin.service';
     UserResolver,
     LogosService,
     LogosResolver,
+    MyLogosResolver,
     LoadingService,
     DashboardResolver,
     AdminService

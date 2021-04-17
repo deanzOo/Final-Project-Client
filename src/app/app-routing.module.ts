@@ -13,6 +13,8 @@ import { ClientGuard } from './guard/client.guard';
 import { UserResolver } from './resolvers/users.resolver';
 import { LogosResolver } from './resolvers/logos.resolver';
 import { DashboardResolver } from './resolvers/dashboard.resolver';
+import { GalleryComponent } from './client/gallery/gallery.component';
+import { MyLogosResolver } from './resolvers/myLogos.resolver';
 
 const routes: Routes = [
   {
@@ -65,6 +67,14 @@ const routes: Routes = [
         path: 'profile',
         canActivate: [ClientGuard],
         component: ClientProfilePageComponent,
+        resolve: {
+          logos: MyLogosResolver
+        }
+      },
+      {
+        path: 'gallery',
+        canActivate: [ClientGuard],
+        component: GalleryComponent,
         resolve: {
           logos: LogosResolver
         }

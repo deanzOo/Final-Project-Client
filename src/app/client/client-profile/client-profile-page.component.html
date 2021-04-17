@@ -131,7 +131,7 @@
     <button mat-raised-button color="primary" (click)="currentLogos = null">חזור ליצירה</button>
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
       <div *ngFor="let logo of currentLogos">
-        <app-logo-card [logo]="logo"></app-logo-card>
+        <app-logo-card [logo]="logo" (savedLogo)="logoSaved(logo)"></app-logo-card>
       </div>
     </div>
   </ng-template>

@@ -17,7 +17,7 @@ export class LogosService {
     private api: ApiAccessService
   ) { }
 
-  get(params: any): Observable<Logo[]> {
+  get(params?: any): Observable<Logo[]> {
     return this.api.request({
       method: HTTP_METHODS.GET,
       endpoint: LOGOS_ENDPOINTS.GET_CREATE,
