@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Gallery } from 'angular-gallery';
 import { LogosService } from '../../services/logos.service';
 import { LoadingService } from '../../services/loading.service';
+import { ModelsService } from '../../services/models.service';
 
 @Component({
   selector: 'app-client-profile-page',
@@ -27,6 +28,8 @@ export class ClientProfilePageComponent implements OnInit {
   logos: Logo[];
   logosGallery: {path: string}[];
   currentLogos: Logo[];
+  logoText = '';
+  showText = false;
 
   constructor(
     private rout: ActivatedRoute,
@@ -34,6 +37,7 @@ export class ClientProfilePageComponent implements OnInit {
     public authService: AuthService,
     private gallery: Gallery,
     private logoService: LogosService,
+    private nmodelsService: ModelsService,
     private loadingService: LoadingService
   ) {
     this.authService.currentUser.subscribe(client => this.currentUser = client);
@@ -49,6 +53,11 @@ export class ClientProfilePageComponent implements OnInit {
     this.logos = this.rout.snapshot.data.logos;
     this.logosGallery = this.logos.map(logo => {
       return {path: this.imageUrlBase + logo.url};
+    });
+    this.nmodelsService.getActive().subscribe(res => {
+      if (res && res.length > 0 && res[0].name.search('Text') >= 0) {
+        this.showText = true;
+      }
     });
   }
 
@@ -134,7 +143,8 @@ export class ClientProfilePageComponent implements OnInit {
 
   createLogo() {
     this.loadingService.setLoading(true);
-    this.logoService.create().then(logos => {
+    const text = this.logoText = this.nmodelsService.activeModel.name.search('Text') >= 0 ? this.logoText : null;
+    this.logoService.create(text).then(logos => {
       this.loadingService.setLoading(false);
       this.toastr.success('פעולה הושלמה, אל תשכח לדרג את הלוגו');
       this.currentLogos = logos;

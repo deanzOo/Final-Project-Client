@@ -27,11 +27,12 @@ export class LogosService {
     }));
   }
 
-  create(): Promise<Logo[]> {
+  create(text = null): Promise<Logo[]> {
     return new Promise((resolve, reject) => {
       this.api.request({
         method: HTTP_METHODS.POST,
-        endpoint: LOGOS_ENDPOINTS.GET_CREATE
+        endpoint: LOGOS_ENDPOINTS.GET_CREATE,
+        body: { text }
       }).subscribe((response: Logo[]) => {
         resolve(response);
       }, err => {

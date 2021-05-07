@@ -16,6 +16,11 @@ export enum USER_ENDPOINTS {
   UPDATE_DELETE = 'admins/users',
 }
 
+export enum MODELS_ENDPOINTS {
+  GET_SET = 'admins/pipelines',
+  GET_ACTIVE = 'admins/pipelines/active',
+}
+
 export enum ADMIN_ENDPOINTS {
   GET_DASHBOARD = 'admins/dashboard'
 }
@@ -26,7 +31,7 @@ export enum LOGOS_ENDPOINTS {
   SAVE = 'api/logos/save'
 }
 
-export type END_POINTS = AUTH_ENDPOINTS | USER_ENDPOINTS | LOGOS_ENDPOINTS | ADMIN_ENDPOINTS;
+export type END_POINTS = AUTH_ENDPOINTS | USER_ENDPOINTS | LOGOS_ENDPOINTS | ADMIN_ENDPOINTS | MODELS_ENDPOINTS;
 
 export interface ApiRequest {
   method: HTTP_METHODS;

@@ -1,7 +1,15 @@
 .gallery {
   padding-top: 100px;
 
+  .gallery-logos {
+    width: 100%;
+  }
+  .imagePlace {
+    width: 20%;
+    height: 100px;
+  }
   img {
     padding-top: 5px;
+    max-width: 200px;
   }
 }

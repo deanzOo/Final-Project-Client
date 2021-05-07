@@ -35,7 +35,7 @@ import { ClientHeaderComponent } from './client/client-layout/client-header/clie
 import { ClientFooterComponent } from './client/client-layout/client-footer/client-footer.component';
 import { ClientAuthModalComponent } from './client/login-modal/client-auth-modal.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClientProfilePageComponent } from './client/client-profile/client-profile-page.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -54,6 +54,9 @@ import { AdminService } from './services/admin.service';
 import { MyLogosResolver } from './resolvers/myLogos.resolver';
 import { GalleryComponent } from './client/gallery/gallery.component';
 import { RateLogoComponent } from './client/gallery/rate-logo/rate-logo.component';
+import { ModelsResolver } from './resolvers/models.resolver';
+import { ModelsService } from './services/models.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -106,12 +109,16 @@ import { RateLogoComponent } from './client/gallery/rate-logo/rate-logo.componen
     MatRadioModule,
     PerfectScrollbarModule,
     IvyGalleryModule,
-    BarRatingModule
+    BarRatingModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthService,
     UsersService,
+    ModelsService,
     UserResolver,
+    ModelsResolver,
     LogosService,
     LogosResolver,
     MyLogosResolver,

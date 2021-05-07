@@ -116,7 +116,7 @@
 <section id="my-logos" fxLayout="column" fxLayoutAlign="center center" *ngIf="currentPage === 'MyLogos'">
   <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="20px">
     <div *ngFor="let logo of logos; let elementIndex=index">
-      <img [src]="imageUrlBase + logo.url" (click)="showGallery(elementIndex)">
+      <img [src]="imageUrlBase + logo.url" (click)="showGallery(elementIndex)" class="preview-mylogo">
     </div>
   </div>
 </section>
@@ -125,6 +125,10 @@
 <!--Create logo section starts-->
 <section id="create-logo" fxLayout="column" fxLayoutAlign="center center" *ngIf="currentPage === 'CreateLogo'">
   <div fxLayout="column" fxLayoutAlign="center center" *ngIf="!currentLogos; else activeGenerateLogo">
+    <mat-form-field *ngIf="showText" [(ngModel)]="logoText">
+      <mat-label>שם על הלוגו</mat-label>
+      <input matInput [(ngModel)]="logoText">
+    </mat-form-field>
     <button mat-raised-button color="primary" (click)="createLogo()">צור לוגו</button>
   </div>
   <ng-template #activeGenerateLogo>

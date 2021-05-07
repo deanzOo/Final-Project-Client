@@ -1,7 +1,17 @@
 <div class="gallery">
-  <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <div *ngFor="let logo of logos; let elementIndex=index">
-      <img [src]="imageUrlBase + logo.url" (click)="rateLogo(logo)">
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div class="gallery-logos" fxLayout="row wrap" fxLayoutAlign="start center">
+      <div class="imagePlace"  fxLayoutAlign="center center" *ngFor="let logo of currentViewLogos; let elementIndex=index">
+        <img [src]="imageUrlBase + logo.url" (click)="rateLogo(logo)">
+      </div>
+    </div>
+    <div>
+      <mat-paginator [length]="logos.length"
+                     [pageSize]="10"
+                     [pageSizeOptions]="[5, 10, 25, 100]"
+                     (page)="changePage($event)"
+      >
+      </mat-paginator>
     </div>
   </div>
 </div>

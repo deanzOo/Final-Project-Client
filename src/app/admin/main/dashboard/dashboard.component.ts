@@ -336,7 +336,7 @@ export class DashboardComponent implements OnInit {
           width: '100%',
           backgroundColor: 'transparent'
         },
-        size: 2
+        size: 4
       },
       {
         title: 'Generator',
@@ -349,7 +349,7 @@ export class DashboardComponent implements OnInit {
           width: '100%',
           backgroundColor: 'transparent'
         },
-        size: 2
+        size: 4
       },
       {
         title: 'ממוצע דירוגים לפי קריטריונים',
@@ -366,7 +366,7 @@ export class DashboardComponent implements OnInit {
           width: '100%',
           backgroundColor: 'transparent',
         },
-        size: 1
+        size: 2
       },
     ];
   }

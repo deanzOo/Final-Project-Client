@@ -15,6 +15,7 @@ import { LogosResolver } from './resolvers/logos.resolver';
 import { DashboardResolver } from './resolvers/dashboard.resolver';
 import { GalleryComponent } from './client/gallery/gallery.component';
 import { MyLogosResolver } from './resolvers/myLogos.resolver';
+import { ModelsResolver } from './resolvers/models.resolver';
 
 const routes: Routes = [
   {
@@ -42,7 +43,10 @@ const routes: Routes = [
           },
           {
             path: 'models',
-            component: ModelsComponent
+            component: ModelsComponent,
+            resolve: {
+              models: ModelsResolver
+            }
           },
           {
             path: 'users',
